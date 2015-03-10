@@ -1,0 +1,20 @@
+{
+  "name": "Guido",
+  "version": "0.0.1",
+  "main": "public/app.js",
+  "dependencies": {
+    "commonjs-require-definition": "~0.1.2",
+    "angular": "~1.2.5",
+    "angular-sanitize": "1.2.5",
+    "angular-resource": "1.2.5",
+    "angular-route": "1.2.5",
+    "angular-cookies": "1.2.5",
+    "socket.io-client": "1.x"
+    },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "overrides": {}
+}
