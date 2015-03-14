@@ -1,24 +1,36 @@
 'use strict'
 
-express = require 'express'
-app = express()
+express 			= require 'express'
+routes 				= require './routes'
+bodyParser 		= require('body-parser')
+errorhandler 	= require('errorhandler')
+
+app 			= express()
+server 		= require("http").Server(app)
+io 				= require("socket.io")(server)
+
+# Configuration
+app.use bodyParser.json()
+app.use express.static(__dirname + '/../public')
+
+env = process.env.NODE_ENV || 'development'
+if env == 'development'
+  app.use errorhandler(dumpExceptions: true, showStack: true)  
+if env == 'production'
+  app.use errorhandler()
  
-app.use(express.static './public')
+start = (port, callback)->
+  routes.setup app
+  port = port or process.env.PORT
 
-exports.startServer = (port, path, callback) ->
+  app.listen port, callback
+  console.log 'Express server listening on port %d in %s mode', port, app.settings.env
 
-	# Server setup.
-	server 	= require("http").Server(app)
-	io 			= require("socket.io")(server)
-	server.listen port, callback
-	console.log('Listening on port: ' + port)
+#
+# Socket action when client connects.
+#
+io.on "connection", (socket) ->
+	console.log('Client is connected.')
 
-	# Defining routes.
-	app.get '/', (req, res) -> res.sendfile './public/index.html'
-
-	#
-	# Socket action when client connects.
-	#
-	io.on "connection", (socket) ->
-		console.log('Client is connected.')
-
+exports.start = start
+exports.app 	= app

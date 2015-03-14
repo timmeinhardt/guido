@@ -1,7 +1,7 @@
 exports.config =
 
   server: 
-    path: 'server/server.coffee' 
+    path: 'server/index.coffee' 
     port: 3000 
     base: '/' 
     run: yes
