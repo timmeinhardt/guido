@@ -1,13 +1,18 @@
 'use strict'
 
+mongoose  		= require 'mongoose'
+
 express 			= require 'express'
 routes 				= require './routes'
-bodyParser 		= require('body-parser')
-errorhandler 	= require('errorhandler')
+bodyParser 		= require 'body-parser'
+errorhandler 	= require 'errorhandler'
 
 app 			= express()
 server 		= require("http").Server(app)
 io 				= require("socket.io")(server)
+
+# database
+mongoose.connect 'mongodb://localhost/guido'
 
 # Configuration
 app.use bodyParser.json()

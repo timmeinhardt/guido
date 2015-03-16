@@ -6,18 +6,19 @@ Place     = require '../../../server/models/places'
 describe 'Place', ->
 
   before (done) ->
-    db = mongoose.connect 'mongodb://localhost/guido-test'
+    mongoose.connect 'mongodb://localhost/guido-test'
     done()
 
   after (done) ->
+    mongoose.connection.db.dropDatabase()
     mongoose.connection.close()
     done()
 
   beforeEach (done) ->
     place = new Place
-      category: 'Darkness'
-      title: 'Kong'
-      describtion: 'Club am HBF'
+      category:     'Darkness'
+      title:        'Kong'
+      describtion:  'Club am HBF'
 
     place.save (err) ->
       if err
