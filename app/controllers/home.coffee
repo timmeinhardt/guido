@@ -1,4 +1,4 @@
-class GuidoCtrl
+class HomeController
 
   #
   #
@@ -15,6 +15,6 @@ class GuidoCtrl
   _initScope: ->
     @$scope.title       = @title
 
-GuidoCtrl.dependencies = ['$scope']
+HomeController.dependencies = ['$scope']
 
-module.exports = GuidoCtrl
+module.exports = HomeController

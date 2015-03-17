@@ -8,15 +8,19 @@ require 'angular'
 require 'angular-route'
 
 #
-# Register Components
-#
-
-#
 # Define AngularJS App Module
 #
 app = angular.module 'App', [
   'ngRoute'
 ]
+
+#
+# Register Components
+#
+app.controller 'HomeController', 		require 'controllers/home'
+app.controller 'PlacesController', 	require 'controllers/places'
+
+app.directive 'places', require 'directives/places'
 
 #
 # Setup AngularJS routes
@@ -25,7 +29,7 @@ app.config [
   '$routeProvider', ($routeProvider) ->
     $routeProvider
       .when '/',
-        controller: require 'controllers/guidoCtrl'
+        controller: 'HomeController'
         template:   require 'templates'
 ]
 
