@@ -22,6 +22,8 @@ app.controller 'PlacesController', 	require 'controllers/places'
 
 app.directive 'places', require 'directives/places'
 
+app.service 'places', require 'services/places'
+
 #
 # Setup AngularJS routes
 #

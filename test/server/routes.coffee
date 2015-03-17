@@ -12,7 +12,7 @@ describe 'Routing', ->
     
   describe 'JSON index for places', ->
     it 'should return places with category, title and describtion', (done) ->
-      request(url).get('/places.js').end (err, res) ->
+      request(url).get('/places.json').end (err, res) ->
         if err
           throw err
         res.body[1].should.have.property('category')
