@@ -3,8 +3,8 @@
 #
 # Require vendor modules explicitly
 #
+window._ = require('lodash.compat')
 io = require('socket.io')
-#_ = require('lodash.compat')
 require 'angular'
 require 'angular-route'
 require 'angular-google-maps'
