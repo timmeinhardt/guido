@@ -9,8 +9,10 @@
     "angular-resource": "1.2.5",
     "angular-route": "1.2.5",
     "angular-cookies": "1.2.5",
-    "socket.io-client": "1.x"
-    },
+    "socket.io-client": "1.x",
+    "angular-google-maps": "~2.0.17",
+    "lodash": "2.4.1"
+  },
   "ignore": [
     "**/.*",
     "node_modules",

@@ -3,15 +3,18 @@
 #
 # Require vendor modules explicitly
 #
-io = require 'socket.io'
+io = require('socket.io')
+#_ = require('lodash.compat')
 require 'angular'
 require 'angular-route'
+require 'angular-google-maps'
 
 #
 # Define AngularJS App Module
 #
 app = angular.module 'App', [
   'ngRoute'
+  'uiGmapgoogle-maps'
 ]
 
 #
@@ -19,7 +22,9 @@ app = angular.module 'App', [
 #
 app.controller 'HomeController', 		require 'controllers/home'
 app.controller 'PlacesController', 	require 'controllers/places'
+app.controller 'MapController', 	require 'controllers/map'
 
+app.directive 'map', require 'directives/map'
 app.directive 'places', require 'directives/places'
 
 app.service 'places', require 'services/places'
