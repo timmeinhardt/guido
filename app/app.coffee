@@ -47,7 +47,7 @@ angular.element(document).ready ->
   angular.bootstrap document, ['App']
 
 # Connect to socket server.
-socket = io.connect("http://localhost:3000")
+socket = io.connect()
 
 module.exports = app
 

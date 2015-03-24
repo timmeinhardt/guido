@@ -27,7 +27,7 @@
     "mongoose": "3.8.25",
     "body-parser": "*",
     "errorhandler": "*",
-    "socket.io": "1.x",
+    "socket.io": "1.3.5",
     "sass-brunch": "^1.8.1",
     "auto-reload-brunch": "1.7.5",
     "mocha":"*",
