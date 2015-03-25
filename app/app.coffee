@@ -10,7 +10,7 @@ require 'angular-route'
 require 'angular-google-maps'
 
 #
-# Define AngularJS App Module
+# Initialize angularJS app module
 #
 app = angular.module 'App', [
   'ngRoute'
@@ -18,11 +18,20 @@ app = angular.module 'App', [
 ]
 
 #
-# Register Components
+# Configure app module
 #
-app.controller 'HomeController', 		require 'controllers/home'
-app.controller 'PlacesController', 	require 'controllers/places'
-app.controller 'MapController', 	require 'controllers/map'
+app.config (uiGmapGoogleMapApiProvider) ->
+  uiGmapGoogleMapApiProvider.configure
+    key: 'AIzaSyDbW5dqnoeTjb1dETiDs-azrIPnZ9VrUSo'
+    v: '3.17'
+    libraries: 'weather,geometry,visualization'
+
+#
+# Register angular components
+#
+app.controller 'HomeController',    require 'controllers/home'
+app.controller 'PlacesController',  require 'controllers/places'
+app.controller 'MapController',   require 'controllers/map'
 
 app.directive 'map', require 'directives/map'
 app.directive 'places', require 'directives/places'
@@ -30,7 +39,7 @@ app.directive 'places', require 'directives/places'
 app.service 'places', require 'services/places'
 
 #
-# Setup AngularJS routes
+# Setup angularJS routes
 #
 app.config [
   '$routeProvider', ($routeProvider) ->
@@ -46,7 +55,9 @@ app.config [
 angular.element(document).ready ->
   angular.bootstrap document, ['App']
 
-# Connect to socket server.
+#
+# Connect to socket server
+#
 socket = io.connect()
 
 module.exports = app
