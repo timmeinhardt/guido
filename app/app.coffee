@@ -36,7 +36,6 @@ app.controller 'NavController',   require 'controllers/nav'
 app.controller 'HeaderController', require 'controllers/header'
 app.controller 'FooterController', require 'controllers/footer'
 
-app.directive 'home', require 'directives/home'
 app.directive 'map', require 'directives/map'
 app.directive 'places', require 'directives/places'
 app.directive 'nav', require 'directives/nav'
