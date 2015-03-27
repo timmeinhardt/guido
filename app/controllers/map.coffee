@@ -14,11 +14,14 @@ class MapController
   _initScope: ->
     @$scope.map = 
       center:
-        latitude: 45
-        longitude: -73
-      zoom: 12
+        latitude:   48.1333
+        longitude:  11.5667
+      zoom: 10
 
     @$scope.options =
+      panControl:         false
+      mapTypeControl:     false
+      streetViewControl:  false
       styles: @_style()
 
   _style: ->
