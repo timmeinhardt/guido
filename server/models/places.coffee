@@ -6,6 +6,6 @@ Schema    = mongoose.Schema
 Place = new Schema
   category: String
   title: String
-  describtion: String
+  description: String
 
 module.exports = mongoose.model 'Place', Place
