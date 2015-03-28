@@ -15,7 +15,7 @@ class PlacesController
   _initScope: ->
     @$scope.subTitle   = @subTitle
 
-    @places.find().then (data) =>
+    @places.find({}).then (data) =>
       @$scope.places = data
 
 PlacesController.dependencies = ['$scope', 'places']

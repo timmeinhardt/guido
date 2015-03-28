@@ -2,8 +2,7 @@
 
 Place = require './models/places'
 
-Place.remove({})
-
+Place.remove({}, ->)
 Place.create(
   category: "Darkness"
   title: "Kong"
@@ -20,13 +19,11 @@ Place.create(
   description: "Moon"
 )
 
-place2 = new Place()
-place3 = new Place()
-
 setup = (app) ->
   app.get '/', (req, res) -> res.sendFile(__dirname + '/../public/index.html')
-  app.get '/places.json', (req, res) -> 
-    Place.find {},(err, places) ->
+  app.get '/places.json', (req, res) ->
+    query = req.query
+    Place.find {query},(err, places) ->
       if err 
         res.send err
       res.json places
