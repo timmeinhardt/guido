@@ -3,7 +3,7 @@ class NavController
   #
   #
   #
-  constructor: (@$scope) ->  
+  constructor: (@$scope, @places) ->  
     @_initScope()
 
     @
@@ -33,9 +33,8 @@ class NavController
 
     ]
 
-    
+    @$scope.updatePlaces = @places.setPlaces
 
-
-NavController.dependencies = ['$scope','nav']
+NavController.dependencies = ['$scope','nav','places']
 
 module.exports = NavController

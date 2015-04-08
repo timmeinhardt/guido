@@ -1,5 +1,4 @@
 div#nav-container
   ul#nav-list
-    li(ng-repeat="category in categories")
-      | {{category.title}} 
-    
+    li(ng-repeat="category in categories" ng-click="updatePlaces({category: category.title})")
+      | {{category.title}}    

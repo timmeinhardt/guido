@@ -1,26 +1,24 @@
-places = ($http) ->
+class PlacesService
+
+  constructor: (@$http) ->
+    @setPlaces()
+    @
 
   #
   #
   #
-  httpRequest = (url, query) ->
-    $http.get(url, {params: query})
-      .error((data, status, headers, config) ->
-        new Error("ERROR parsing #{url}", arguments)
-      )
-      .then((response) ->
-        response.data
-      )
+  setPlaces: (query) =>
+    request = @$http.get '/places.json', {params: query}
+    request.then (response) =>
+        @places = response.data
+    @
+      
+  #
+  #
+  #
+  getPlaces: ->
+    @places
 
-  #
-  #
-  #
-  @find = (query)->
-    httpRequest '/places.json', query
+PlacesService.dependencies = ['$http']
 
-  #
-  #
-  #
-  @
-
-module.exports = places
+module.exports = PlacesService

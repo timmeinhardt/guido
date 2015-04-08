@@ -4,7 +4,6 @@ class PlacesController
   #
   #
   constructor: (@$scope, @places) ->
-    @subTitle = "hedonistic"
     @_initScope()
 
     @
@@ -13,10 +12,10 @@ class PlacesController
   #
   #
   _initScope: ->
-    @$scope.subTitle   = @subTitle
-
-    @places.find({}).then (data) =>
-      @$scope.places = data
+    @$scope.$watch (=> 
+      @places.getPlaces()
+      ), (places) => 
+      @$scope.places = places
 
 PlacesController.dependencies = ['$scope', 'places']
 
