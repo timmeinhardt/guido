@@ -1,3 +1,4 @@
 div#places-container
   div(ng-repeat="place in places")
     | {{place.title}}
+    img( width='300' ng-repeat="image in place.images" ng-src="{{image.normal}}" )

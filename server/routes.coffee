@@ -7,14 +7,29 @@ Place.remove {}, ->
     category: "Darkness"
     title: "Kong"
     description: "Club am HBF"
+    images: [
+      {
+        normal: '/uploads/images/places/kong.jpg'
+      }
+    ]
   }, {
     category: "Food"
     title: "Kismet"
     description: "Orient und O..."
+    images: [
+      {
+        normal: '/uploads/images/places/kismet.jpg'
+      }
+    ]
   }, {
     category: "Materialism"
     title: "Harvest"
     description: "Moon"
+    images: [
+      {
+        normal: '/uploads/images/places/harvest.jpg'
+      }
+    ]
   }, ->
 
 setup = (app) ->
