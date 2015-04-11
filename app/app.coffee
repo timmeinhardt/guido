@@ -51,16 +51,15 @@ app.service 'places', require 'services/places'
 #
 # Setup angularJS routes
 #
-app.config [
-  '$routeProvider', ($routeProvider) ->
-    $routeProvider
-      .when '/',
-        controller: 'HomeController'
-        template:   require 'templates'
-      .when '/admin',
-        controller: 'AdminPanelController'
-        template: require 'templates/adminPanel'
-]
+app.config ($routeProvider, $locationProvider) ->
+  $locationProvider.html5Mode true
+  $routeProvider
+    .when '/',
+      controller: 'HomeController'
+      template:   require 'templates'
+    .when '/admin',
+      controller: 'AdminPanelController'
+      template: require 'templates/adminPanel'
 
 #
 # Callback for document ready
