@@ -19,8 +19,8 @@ Place = new Schema
   phone:        String
   placeid:      String
   location:
-    lat:        String
-    lng:        String
+    latitude:        String
+    longitude:       String
   images: [
     {
       normal: String
@@ -33,8 +33,8 @@ Place.pre 'save', (next) ->
     bodyJSON = JSON.parse body
     location = bodyJSON.result.geometry.location
     
-    this.location.lat = location.lat
-    this.location.lng = location.lng
+    this.location.latitude  = location.lat
+    this.location.longitude = location.lng
     next()
 
 module.exports = mongoose.model 'Place', Place
