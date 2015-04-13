@@ -18,7 +18,8 @@ describe 'Place', ->
     place = new Place
       category:     'Darkness'
       title:        'Kong'
-      describtion:  'Club am HBF'
+      description:  'Club am HBF'
+      placeid:      'ChIJS3Wt_Pl1nkcR8341u4oQ_Jk'
 
     place.save (err) ->
       if err
@@ -29,9 +30,15 @@ describe 'Place', ->
     Place.remove {}, ->
       done()
     
-  it 'find a place by category', (done) ->
-    Place.findOne { category: 'Darkness' }, (err, place) ->
+  it 'should find a place by category', (done) ->
+    Place.findOne category: 'Darkness', (err, place) ->
       if err
         throw err
-      place.category.should.eql('Darkness')
+      place.category.should.eql 'Darkness'
+      done()
+    
+  it 'should autofill location latitude and longitude via placeid', (done) ->
+    Place.findOne placeid: {$ne:null}, (err, place) ->
+      place.location.latitude.should.not.be.empty
+      place.location.longitude.should.not.be.empty
       done()
