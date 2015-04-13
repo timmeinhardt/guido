@@ -1,7 +1,6 @@
 'use strict'
 
 mongoose  		= require 'mongoose'
-
 express 			= require 'express'
 routes 				= require './routes'
 bodyParser 		= require 'body-parser'
@@ -17,6 +16,7 @@ mongoose.connect 'mongodb://localhost/guido'
 # Configuration
 app.use bodyParser.json()
 app.use express.static(__dirname + '/../public')
+app.use '/uploads', express.static(__dirname + '/../uploads')
 
 env = process.env.NODE_ENV || 'development'
 if env == 'development'

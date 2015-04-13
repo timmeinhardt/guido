@@ -17,6 +17,10 @@ class PlacesController
       ), (places) => 
       @$scope.places = places
 
-PlacesController.dependencies = ['$scope', 'places']
+PlacesController.dependencies = [
+  '$scope'
+  'places'
+]
+
 
 module.exports = PlacesController
