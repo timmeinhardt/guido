@@ -34,6 +34,36 @@ Place.remove {}, ->
         normal: '/uploads/images/places/harvest.jpg'
       }
     ]
+  }, {
+    category: "Darkness"
+    title: "Harry Klein"
+    description: "Techno Techno Techno"
+    placeid: "ChIJP_jir_d1nkcR-PLGT1VWAuE"
+    images: [
+      {
+        normal: '/uploads/images/places/harry_klein.jpg'
+      }
+    ]
+  }, {
+    category: "Food"
+    title: "Schnelle Liebe"
+    description: "Burger Burger Burger"
+    placeid: "ChIJlxEQyl7fnUcRF5mlsNNlnTk"
+    images: [
+      {
+        normal: '/uploads/images/places/schnelle_liebe.jpg'
+      }
+    ]
+  }, {
+    category: "Escapism"
+    title: "Flaucher"
+    description: "Moon"
+    placeid: "ChIJq2ptKj3fnUcRQDaV-KQlHQ8"
+    images: [
+      {
+        normal: '/uploads/images/places/flaucher.jpg'
+      }
+    ]
   }, ->
 
 setup = (app) ->
