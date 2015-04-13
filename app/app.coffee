@@ -52,7 +52,7 @@ app.service 'places', require 'services/places'
 # Setup angularJS routes
 #
 app.config ($routeProvider, $locationProvider) ->
-  $locationProvider.html5Mode true
+  #$locationProvider.html5Mode true
   $routeProvider
     .when '/',
       controller: 'HomeController'
