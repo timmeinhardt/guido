@@ -12,9 +12,7 @@ class PlacesController
   #
   #
   _initScope: ->
-    @$scope.$watch (=> 
-      @places.getPlaces()
-      ), (places) => 
+    @$scope.$watch (=> @places.places), (places) => 
       @$scope.places = places
 
 PlacesController.dependencies = [
