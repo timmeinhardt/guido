@@ -19,6 +19,7 @@ Place.remove {}, ->
 
 setup = (app) ->
   app.get '/', (req, res) -> res.sendFile(__dirname + '/../public/index.html')
+  app.get '/adminPanel', (req, res) -> res.sendFile(__dirname + '/../public/index.html')
   app.get '/places.json', (req, res) ->
     query = req.query
     Place.find {query},(err, places) ->
