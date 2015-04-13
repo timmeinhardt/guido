@@ -35,12 +35,16 @@ app.controller 'MapController',   require 'controllers/map'
 app.controller 'NavController',   require 'controllers/nav'
 app.controller 'HeaderController', require 'controllers/header'
 app.controller 'FooterController', require 'controllers/footer'
+app.controller 'AdminPanelController',  require 'controllers/adminPanel'
+
 
 app.directive 'map', require 'directives/map'
 app.directive 'places', require 'directives/places'
 app.directive 'nav', require 'directives/nav'
 app.directive 'header', require 'directives/header'
 app.directive 'footer', require 'directives/footer'
+app.directive 'adminPanel', require 'directives/adminPanel'
+
 
 app.service 'places', require 'services/places'
 
@@ -53,6 +57,9 @@ app.config [
       .when '/',
         controller: 'HomeController'
         template:   require 'templates'
+      .when '/admin',
+        controller: 'AdminPanelController'
+        template: require 'templates/adminPanel'
 ]
 
 #
