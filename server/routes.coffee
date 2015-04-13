@@ -73,10 +73,16 @@ setup = (app) ->
     res.sendFile( path.resolve(__dirname + '/../public/index.html') )
   app.get '/places.json', (req, res) ->
     query = req.query
-    Place.find {query},(err, places) ->
-      if err 
-        res.send err
-      res.json places
+    if query.hasOwnProperty '_id'
+      Place.findById query._id, (err, place) ->
+        if err 
+          res.send err
+        res.json [place]
+    else
+      Place.find {query},(err, places) ->
+        if err 
+          res.send err
+        res.json places
 
 exports.setup = setup
 

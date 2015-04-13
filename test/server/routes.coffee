@@ -24,9 +24,19 @@ describe 'Routing', ->
         res.body[0].should.have.property('description')
         done()
 
-    it 'should return specific place if query is given', (done) ->
+    it 'should return specific places if query is given', (done) ->
       request(url).get('/places.json').query(category: 'Darkness').end (err, res) ->
         if err
           throw err
         res.body[0].category.should.eql('Darkness')
         done()
+
+    it 'should return specific place if query has _id parameter', (done) ->
+      request(url).get('/places.json').end (err, res) ->
+        place = res.body[0]
+
+        request(url).get('/places.json').query(_id: place._id).end (err, res) ->
+          if err
+            throw err
+          res.body[0]._id.should.eql(place._id)
+          done()
