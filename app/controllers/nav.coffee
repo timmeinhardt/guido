@@ -33,8 +33,15 @@ class NavController
 
     ]
 
-    @$scope.updatePlaces = @places.setPlaces
+    @$scope.updatePlaces = @updatePlaces
 
-NavController.dependencies = ['$scope','nav','places']
+  updatePlaces: (category) =>
+    @places.setPlaces category: category.title, true
+    @
+
+NavController.dependencies = [
+  '$scope'
+  'places'
+]
 
 module.exports = NavController

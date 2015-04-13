@@ -1,16 +1,18 @@
 class PlacesService
 
   constructor: (@$http) ->
-    @setPlaces()
+    @setPlaces {}, true
     @
 
   #
   #
   #
-  setPlaces: (query) =>
-    request = @$http.get '/places.json', {params: query}
+  setPlaces: (query, setMapPlaces) =>
+    request = @$http.get '/places.json', params: query
     request.then (response) =>
       @places = response.data
+      if setMapPlaces is true
+        @mapPlaces = @places
     @
 
 PlacesService.dependencies = ['$http']

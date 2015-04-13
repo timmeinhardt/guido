@@ -24,8 +24,13 @@ class MapController
       streetViewControl:  false
       styles: @style()
 
-    @$scope.$watch (=> @places.places), (places) =>
+    @$scope.$watch (=> @places.mapPlaces), (places) =>
+      angular.forEach places, (place) =>
+        place.click = @updatePlaces
       @$scope.markers = places
+
+  updatePlaces: (marker) =>
+    @places.setPlaces _id: marker.model._id, false
 
   style: ->
     [
