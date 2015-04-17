@@ -22,14 +22,14 @@ class MapController
       panControl:         false
       mapTypeControl:     false
       streetViewControl:  false
-      styles: @style()
+      styles:             @style()
 
     @$scope.$watch (=> @places.mapPlaces), (places) =>
       angular.forEach places, (place) =>
-        place.click = @updatePlaces
+        place.click = @clickMarker
       @$scope.markers = places
 
-  updatePlaces: (marker) =>
+  clickMarker: (marker) =>
     @places.setPlaces _id: marker.model._id, false
 
   style: ->
