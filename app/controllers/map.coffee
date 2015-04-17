@@ -22,14 +22,17 @@ class MapController
       panControl:         false
       mapTypeControl:     false
       streetViewControl:  false
-      styles: @_style()
+      styles:             @style()
 
-    @$scope.$watch (=> 
-      @places.getPlaces()
-      ), (places) =>
-        @$scope.markers = places
+    @$scope.$watch (=> @places.mapPlaces), (places) =>
+      angular.forEach places, (place) =>
+        place.click = @clickMarker
+      @$scope.markers = places
 
-  _style: ->
+  clickMarker: (marker) =>
+    @places.setPlaces _id: marker.model._id, false
+
+  style: ->
     [
       {
         'featureType': 'administrative.locality'

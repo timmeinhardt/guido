@@ -28,13 +28,16 @@ Place = new Schema
   ]
 
 Place.pre 'save', (next) ->
-  googlePlacesRequest.qs.placeid = this.placeid
-  request googlePlacesRequest, (err, resp, body) =>
-    bodyJSON = JSON.parse body
-    location = bodyJSON.result.geometry.location
-    
-    this.location.latitude  = location.lat
-    this.location.longitude = location.lng
+  if this.placeid
+    googlePlacesRequest.qs.placeid = this.placeid
+    request googlePlacesRequest, (err, resp, body) =>
+      bodyJSON = JSON.parse body
+      location = bodyJSON.result.geometry.location
+      
+      this.location.latitude  = location.lat
+      this.location.longitude = location.lng
+      next()
+  else
     next()
 
 module.exports = mongoose.model 'Place', Place

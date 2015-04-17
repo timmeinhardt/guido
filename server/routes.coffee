@@ -1,6 +1,7 @@
 'use strict'
 
 Place = require './models/places'
+path  = require 'path'
 
 Place.remove {}, ->
   Place.create {
@@ -33,17 +34,55 @@ Place.remove {}, ->
         normal: '/uploads/images/places/harvest.jpg'
       }
     ]
+  }, {
+    category: "Darkness"
+    title: "Harry Klein"
+    description: "Techno Techno Techno"
+    placeid: "ChIJP_jir_d1nkcR-PLGT1VWAuE"
+    images: [
+      {
+        normal: '/uploads/images/places/harry_klein.jpg'
+      }
+    ]
+  }, {
+    category: "Food"
+    title: "Schnelle Liebe"
+    description: "Burger Burger Burger"
+    placeid: "ChIJlxEQyl7fnUcRF5mlsNNlnTk"
+    images: [
+      {
+        normal: '/uploads/images/places/schnelle_liebe.jpg'
+      }
+    ]
+  }, {
+    category: "Escapism"
+    title: "Flaucher"
+    description: "Moon"
+    placeid: "ChIJq2ptKj3fnUcRQDaV-KQlHQ8"
+    images: [
+      {
+        normal: '/uploads/images/places/flaucher.jpg'
+      }
+    ]
   }, ->
 
 setup = (app) ->
-  app.get '/', (req, res) -> res.sendFile(__dirname + '/../public/index.html')
-  app.get '/admin', (req, res) -> res.sendFile(__dirname + '/../public/index.html')
+  app.get '/', (req, res) -> 
+    res.sendFile( path.resolve(__dirname + '/../public/index.html') )
+  app.get '/admin', (req, res) -> 
+    res.sendFile( path.resolve(__dirname + '/../public/index.html') )
   app.get '/places.json', (req, res) ->
     query = req.query
-    Place.find {query},(err, places) ->
-      if err 
-        res.send err
-      res.json places
+    if query.hasOwnProperty '_id'
+      Place.findById query._id, (err, place) ->
+        if err 
+          res.send err
+        res.json [place]
+    else
+      Place.find {query},(err, places) ->
+        if err 
+          res.send err
+        res.json places
 
 exports.setup = setup
 
