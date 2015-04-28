@@ -1,8 +1,18 @@
 class PlacesService
 
-  constructor: (@$http) ->
+  constructor: (@$http, @$filter) ->
     @setPlaces {}, true
     @
+
+  #
+  # 
+  #
+  setPlace: (_id) =>
+    loadedPlace = @$filter('filter')(@places, {_id: _id})
+    if loadedPlace.length > 0
+      @places = loadedPlace
+    else 
+      @setPlaces _id: _id, false
 
   #
   #
@@ -15,6 +25,9 @@ class PlacesService
         @mapPlaces = @places
     @
 
-PlacesService.dependencies = ['$http']
+PlacesService.dependencies = [
+  '$http'
+  '$filter'
+]
 
 module.exports = PlacesService

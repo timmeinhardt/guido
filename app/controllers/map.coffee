@@ -36,7 +36,7 @@ class MapController
         
 
   clickMarker: (marker) =>
-    @places.setPlaces _id: marker.model._id, false
+    @places.setPlace marker.model._id
 
   style: ->
     [
