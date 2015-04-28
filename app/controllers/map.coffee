@@ -1,5 +1,7 @@
 class MapController
 
+  dropAnimation: 2
+
   #
   #
   #
@@ -18,6 +20,7 @@ class MapController
         longitude:  11.5667
       zoom: 13
 
+
     @$scope.options =
       panControl:         false
       mapTypeControl:     false
@@ -27,7 +30,10 @@ class MapController
     @$scope.$watch (=> @places.mapPlaces), (places) =>
       angular.forEach places, (place) =>
         place.click = @clickMarker
+        place.options =
+          animation: @dropAnimation
       @$scope.markers = places
+        
 
   clickMarker: (marker) =>
     @places.setPlaces _id: marker.model._id, false
@@ -35,96 +41,169 @@ class MapController
   style: ->
     [
       {
-        'featureType': 'administrative.locality'
+        'featureType': 'administrative.province'
         'elementType': 'all'
+        'stylers': [ { 'visibility': 'off' } ]
+      }
+      {
+        'featureType': 'administrative.locality'
+        'elementType': 'labels.text'
         'stylers': [
-          { 'hue': '#2c2e33' }
-          { 'saturation': 7 }
-          { 'lightness': 19 }
-          { 'visibility': 'on' }
+          { 'lightness': '-50' }
+          { 'visibility': 'simplified' }
         ]
       }
       {
         'featureType': 'landscape'
         'elementType': 'all'
         'stylers': [
-          { 'hue': '#ffffff' }
           { 'saturation': -100 }
-          { 'lightness': 100 }
-          { 'visibility': 'simplified' }
+          { 'lightness': 65 }
+          { 'visibility': 'on' }
         ]
+      }
+      {
+        'featureType': 'landscape'
+        'elementType': 'geometry.fill'
+        'stylers': [
+          { 'visibility': 'on' }
+          { 'saturation': '0' }
+          { 'hue': '#ff0000' }
+        ]
+      }
+      {
+        'featureType': 'landscape'
+        'elementType': 'labels.icon'
+        'stylers': [ { 'visibility': 'simplified' } ]
       }
       {
         'featureType': 'poi'
         'elementType': 'all'
         'stylers': [
-          { 'hue': '#ffffff' }
           { 'saturation': -100 }
-          { 'lightness': 100 }
+          { 'lightness': 51 }
           { 'visibility': 'off' }
         ]
       }
       {
+        'featureType': 'poi.government'
+        'elementType': 'all'
+        'stylers': [ { 'visibility': 'simplified' } ]
+      }
+      {
+        'featureType': 'poi.medical'
+        'elementType': 'all'
+        'stylers': [ { 'visibility': 'simplified' } ]
+      }
+      {
         'featureType': 'road'
-        'elementType': 'geometry'
+        'elementType': 'all'
         'stylers': [
-          { 'hue': '#bbc0c4' }
-          { 'saturation': -93 }
-          { 'lightness': 31 }
-          { 'visibility': 'simplified' }
+          { 'saturation': '-100' }
+          { 'lightness': '0' }
         ]
       }
       {
         'featureType': 'road'
+        'elementType': 'labels.text'
+        'stylers': [ { 'lightness': '0' } ]
+      }
+      {
+        'featureType': 'road'
+        'elementType': 'labels.icon'
+        'stylers': [ { 'lightness': '50' } ]
+      }
+      {
+        'featureType': 'road.highway'
+        'elementType': 'all'
+        'stylers': [ { 'visibility': 'off' } ]
+      }
+      {
+        'featureType': 'road.highway'
+        'elementType': 'geometry.fill'
+        'stylers': [ { 'color': '#95969a' } ]
+      }
+      {
+        'featureType': 'road.highway'
         'elementType': 'labels'
+        'stylers': [ { 'lightness': '0' } ]
+      }
+      {
+        'featureType': 'road.highway'
+        'elementType': 'labels.icon'
         'stylers': [
-          { 'hue': '#bbc0c4' }
-          { 'saturation': -93 }
-          { 'lightness': 31 }
           { 'visibility': 'on' }
+          { 'lightness': '0' }
         ]
       }
       {
-        'featureType': 'road.arterial'
+        'featureType': 'road.highway.controlled_access'
+        'elementType': 'geometry.fill'
+        'stylers': [ { 'color': '#3c3c31' } ]
+      }
+      {
+        'featureType': 'road.highway.controlled_access'
         'elementType': 'labels'
+        'stylers': [ { 'lightness': '0' } ]
+      }
+      {
+        'featureType': 'road.highway.controlled_access'
+        'elementType': 'labels.icon'
         'stylers': [
-          { 'hue': '#bbc0c4' }
-          { 'saturation': -93 }
-          { 'lightness': -2 }
-          { 'visibility': 'simplified' }
+          { 'lightness': '-10' }
+          { 'saturation': '0' }
         ]
       }
       {
         'featureType': 'road.local'
-        'elementType': 'geometry'
+        'elementType': 'all'
         'stylers': [
-          { 'hue': '#e9ebed' }
-          { 'saturation': -90 }
-          { 'lightness': -8 }
-          { 'visibility': 'simplified' }
+          { 'visibility': 'on' }
+          { 'lightness': '41' }
+          { 'saturation': '0' }
         ]
       }
       {
         'featureType': 'transit'
         'elementType': 'all'
         'stylers': [
-          { 'hue': '#e9ebed' }
-          { 'saturation': 10 }
-          { 'lightness': 69 }
+          { 'saturation': -100 }
+          { 'visibility': 'simplified' }
+        ]
+      }
+      {
+        'featureType': 'transit.line'
+        'elementType': 'geometry.fill'
+        'stylers': [ { 'lightness': '0' } ]
+      }
+      {
+        'featureType': 'transit.station.bus'
+        'elementType': 'all'
+        'stylers': [ { 'visibility': 'off' } ]
+      }
+      {
+        'featureType': 'water'
+        'elementType': 'geometry'
+        'stylers': [ { 'color': '#dce6e6' } ]
+      }
+      {
+        'featureType': 'water'
+        'elementType': 'labels'
+        'stylers': [
           { 'visibility': 'on' }
+          { 'lightness': -25 }
+          { 'saturation': -100 }
         ]
       }
       {
         'featureType': 'water'
-        'elementType': 'all'
-        'stylers': [
-          { 'hue': '#e9ebed' }
-          { 'saturation': -78 }
-          { 'lightness': 67 }
-          { 'visibility': 'simplified' }
-        ]
+        'elementType': 'labels.text'
+        'stylers': [ { 'lightness': '50' } ]
       }
     ]
+
+   
+
 
 MapController.dependencies = [
   '$scope'
