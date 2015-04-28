@@ -5,9 +5,13 @@ class MapController
   #
   #
   #
-  constructor: (@$scope, @places) ->
+  constructor: (@$scope, @places, uiGmapGoogleMapApi) ->
     @_initScope()
-
+    uiGmapGoogleMapApi.then (maps) =>
+      @allowedBounds = new (maps.LatLngBounds)(
+        new (maps.LatLng)(48.061550, 11.360840),
+        new (maps.LatLng)(48.248199, 11.722910)
+      )
     @
 
   #
@@ -19,13 +23,16 @@ class MapController
         latitude:   48.1333
         longitude:  11.5667
       zoom: 13
-
-
-    @$scope.options =
-      panControl:         false
-      mapTypeControl:     false
-      streetViewControl:  false
-      styles:             @style()
+      options:
+        panControl:         false
+        mapTypeControl:     false
+        streetViewControl:  false
+        styles:             @style()
+      events:
+        center_changed: (map) =>
+          if @allowedBounds.contains map.center
+            @lastValidCenter = map.getCenter()
+          map.panTo @lastValidCenter
 
     @$scope.$watch (=> @places.mapPlaces), (places) =>
       angular.forEach places, (place) =>
@@ -210,7 +217,8 @@ class MapController
 
 MapController.dependencies = [
   '$scope'
-  'places' 
+  'places'
+  'uiGmapGoogleMapApi' 
 ]
 
 module.exports = MapController
