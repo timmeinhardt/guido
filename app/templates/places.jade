@@ -1,9 +1,12 @@
-div#places-container
-  div(ng-repeat="place in places")
-    .place-card-wrap
-      .place-card
-        .place-card-title
-          | {{place.title}}
-        //img.place-card-image(ng-repeat="image in place.images" ng-src="{{image.normal}}" )
-        //.place-card-description
-          | {{place.description}}
+#places-container
+  .places-card-wrap
+    .places-card(ng-repeat="place in places")
+      .places-card-title
+        | {{place.title}}
+      //img.places-card-image(ng-repeat="image in place.images" ng-src="{{image.normal}}" )
+      //.places-card-description
+        | {{place.description}}
+
+    .places-card(ng-if="!places.length")
+      .places-card-title
+        | Sorry, no where to go.
