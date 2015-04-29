@@ -4,14 +4,13 @@ class FooterController
   #
   #
   constructor: (@$scope) ->
-    @_initScope()
-    
+    @initScope()   
     @
 
   #
   #
   #
-  _initScope: ->
+  initScope: ->
 
 FooterController.dependencies = ['$scope']
 

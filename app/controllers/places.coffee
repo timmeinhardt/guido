@@ -4,16 +4,16 @@ class PlacesController
   #
   #
   constructor: (@$scope, @places) ->
-    @_initScope()
-
+    @initScope()
     @
 
   #
   #
   #
-  _initScope: ->
+  initScope: ->
     @$scope.$watch (=> @places.places), (places) => 
       @$scope.places = places
+    @
 
 PlacesController.dependencies = [
   '$scope'

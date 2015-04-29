@@ -5,15 +5,15 @@ class HomeController
   #
   constructor: (@$scope) ->
     @title = "Guido"
-    @_initScope()
-    
+    @initScope()
     @
 
   #
   #
   #
-  _initScope: ->
+  initScope: ->
     @$scope.title       = @title
+    @
 
 HomeController.dependencies = ['$scope']
 

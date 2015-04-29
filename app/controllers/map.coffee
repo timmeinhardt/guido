@@ -6,7 +6,7 @@ class MapController
   #
   #
   constructor: (@$scope, @places, uiGmapGoogleMapApi) ->
-    @_initScope()
+    @initScope()
     uiGmapGoogleMapApi.then (maps) =>
       @allowedBounds = new (maps.LatLngBounds)(
         new (maps.LatLng)(48.061550, 11.360840),
@@ -17,7 +17,7 @@ class MapController
   #
   #
   #
-  _initScope: ->
+  initScope: ->
     @$scope.map = 
       center:
         latitude:   48.1333
@@ -27,6 +27,7 @@ class MapController
         panControl:         false
         mapTypeControl:     false
         streetViewControl:  false
+        minZoom: 11
         styles:             @style()
       events:
         center_changed: (map) =>
