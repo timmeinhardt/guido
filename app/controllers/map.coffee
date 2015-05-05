@@ -1,53 +1,6 @@
 class MapController
 
-  dropAnimation: 2
-
-  #
-  #
-  #
-  constructor: (@$scope, @places, uiGmapGoogleMapApi) ->
-    @initScope()
-    uiGmapGoogleMapApi.then (maps) =>
-      @allowedBounds = new (maps.LatLngBounds)(
-        new (maps.LatLng)(48.061550, 11.360840),
-        new (maps.LatLng)(48.248199, 11.722910)
-      )
-    @
-
-  #
-  #
-  #
-  initScope: ->
-    @$scope.map = 
-      center:
-        latitude:   48.1333
-        longitude:  11.5667
-      zoom: 13
-      options:
-        panControl:         false
-        mapTypeControl:     false
-        streetViewControl:  false
-        minZoom: 11
-        styles:             @style()
-      events:
-        center_changed: (map) =>
-          if @allowedBounds.contains map.center
-            @lastValidCenter = map.getCenter()
-          map.panTo @lastValidCenter
-
-    @$scope.$watch (=> @places.mapPlaces), (places) =>
-      angular.forEach places, (place) =>
-        place.click = @clickMarker
-        place.options =
-          animation: @dropAnimation
-      @$scope.markers = places
-        
-
-  clickMarker: (marker) =>
-    @places.setPlace marker.model._id
-
-  style: ->
-    [
+  mapStyles: [
       {
         'featureType': 'administrative.province'
         'elementType': 'all'
@@ -213,8 +166,47 @@ class MapController
       }
     ]
 
-   
+  #
+  #
+  #
+  constructor: (@$scope, @places, uiGmapGoogleMapApi) ->
+    @initScope()
+    uiGmapGoogleMapApi.then (maps) =>
+      @allowedBounds = new (maps.LatLngBounds)(
+        new (maps.LatLng)(48.061550, 11.360840),
+        new (maps.LatLng)(48.248199, 11.722910)
+      )
+    @
 
+  #
+  #
+  #
+  initScope: ->
+    @$scope.map = 
+      center:
+        latitude:   48.1333
+        longitude:  11.5667
+      zoom: 13
+      options:
+        panControl:         false
+        mapTypeControl:     false
+        streetViewControl:  false
+        minZoom: 11
+        styles:             @mapStyles
+      events:
+        center_changed: (map) =>
+          if @allowedBounds.contains map.center
+            @lastValidCenter = map.getCenter()
+          map.panTo @lastValidCenter
+
+
+    @$scope.$watch (=> @places.mapPlaces), (places) =>
+      angular.forEach places, (place) =>
+        place.click = @clickMarker
+      @$scope.markers = places
+    @        
+
+  clickMarker: (marker) =>
 
 MapController.dependencies = [
   '$scope'
