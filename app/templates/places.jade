@@ -1,0 +1,9 @@
+div#places-container
+  div(ng-repeat="place in places")
+    .place-card-wrap
+      .place-card
+        .place-card-title
+          | {{place.title}}
+        img.place-card-image(ng-repeat="image in place.images" ng-src="{{image.normal}}" )
+        .place-card-description
+          | {{place.description}}

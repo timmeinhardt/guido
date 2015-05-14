@@ -1,0 +1,17 @@
+h1
+  | Places Backend
+form.simple-form(novalidate='')
+  label(for='title') Title:
+  input#title(type='text', name='title', ng-model='place.title')
+  label(for='category') Category:
+  input#category(type='text', name='category', ng-model='place.category') 
+  label(for='desciption') Description:
+  input#description(type='text', name='description', ng-model='place.description') 
+  label(for='address') Address:
+  input#address(type='text', name='address', ng-model='place.address') 
+  label(for='homepage') Homepage:
+  input#homepage(type='text', name='homepage', ng-model='place.homepage') 
+  label(for='phone') Phone:
+  input#description(type='text', name='phone', ng-model='place.phone') 
+
+  input(type='submit', ng-click='update(place)', value='Save')

@@ -1,0 +1,39 @@
+.place-card-wrap
+  max-width:   70%
+  display:     flex
+  flex-wrap:   wrap
+  margin:      0 auto
+.place-card
+  //background:     #fff
+  min-width:      100%
+  padding:        10px
+  margin-bottom:  2.6%
+  border-bottom:  1px solid black
+  display:        flex
+  flex-direction: column
+.place-card-title
+  font-size:   120%
+  font-weight: 700
+.place-card-image
+  margin:     13px 0
+  align-self: center
+  width:      100%
+  height:     auto
+  filter:         grayscale(1)
+  -webkit-filter: grayscale(1)
+  -moz-filter:    grayscale(1)
+  -o-filter:      grayscale(1)
+  -ms-filter:     grayscale(1)
+  transition:         all 1s ease-in-out
+  -webkit-transition: all 1s ease-in-out
+  -moz-transition:    all 1s ease-in-out
+  -o-transition:      all 1s ease-in-out
+  -ms-transition:     all 1s ease-in-out
+  &:hover
+    filter:         grayscale(0)
+    -webkit-filter: grayscale(0)
+    -moz-filter:    grayscale(0)
+    -o-filter:      grayscale(0)
+    -ms-filter:     grayscale(0)
+.place-card-description
+  font-size:     0.8rem
