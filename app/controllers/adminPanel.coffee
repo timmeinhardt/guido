@@ -3,7 +3,7 @@ class AdminPanelController
   #
   #
   #
-  constructor: (@$scope) ->
+  constructor: (@$scope, @places) ->
     @_initScope()
     
     @
@@ -12,7 +12,13 @@ class AdminPanelController
   #
   #
   _initScope: ->
+    @$scope.$watch (=> @places.places), (places) => 
+      @$scope.places = places
 
-AdminPanelController.dependencies = ['$scope']
+
+AdminPanelController.dependencies = [
+  '$scope'
+  'places'
+]
 
 module.exports = AdminPanelController

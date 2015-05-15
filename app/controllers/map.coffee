@@ -111,7 +111,10 @@ class MapController
       {
         'featureType': 'road'
         'elementType': 'labels.icon'
-        'stylers': [ { 'lightness': '50' } ]
+        'stylers': [ 
+          { 'lightness': '50' } 
+          { 'visibility': 'off' }          
+        ]
       }
       {
         'featureType': 'road.highway'
@@ -132,7 +135,7 @@ class MapController
         'featureType': 'road.highway'
         'elementType': 'labels.icon'
         'stylers': [
-          { 'visibility': 'on' }
+          { 'visibility': 'off' }
           { 'lightness': '0' }
         ]
       }

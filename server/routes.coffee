@@ -71,7 +71,8 @@ setup = (app) ->
     res.sendFile( path.resolve(__dirname + '/../public/index.html') )
   app.get '/admin', (req, res) -> 
     res.sendFile( path.resolve(__dirname + '/../public/index.html') )
-  app.get '/places.json', (req, res) ->
+
+  app.get '/places', (req, res) ->
     query = req.query
     if query.hasOwnProperty '_id'
       Place.findById query._id, (err, place) ->
@@ -83,6 +84,24 @@ setup = (app) ->
         if err 
           res.send err
         res.json places
+  
+  app.post '/places', (req, res) ->
+    Place.create req.body, (err, place) ->
+      if err
+        res.send err
+      res.json place
+
+  app.delete '/places/:_id', (req, res) ->
+    Place.findByIdAndRemove req.params._id, req.body, (err, place) ->
+      if err
+        res.send err
+      res.json place
+
+  app.put '/places/:_id', (req, res) ->
+    Place.findByIdAndUpdate req.params._id, req.body, (err, place) ->
+      if err
+        res.send err
+      res.json place
 
 exports.setup = setup
 
