@@ -4,14 +4,13 @@ class NavController
   #
   #
   constructor: (@$scope, @places) ->  
-    @_initScope()
-
+    @initScope()
     @
 
   #
   #
   #
-  _initScope: ->
+  initScope: ->
 
     @$scope.categories = 
     [
@@ -34,6 +33,7 @@ class NavController
     ]
 
     @$scope.updatePlaces = @updatePlaces
+    @
 
   updatePlaces: (category) =>
     @places.setPlaces category: category.title, true

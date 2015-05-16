@@ -4,17 +4,15 @@ class AdminPanelController
   #
   #
   constructor: (@$scope, @places) ->
-    @_initScope()
-    
+    @initScope()  
     @
 
   #
   #
   #
-  _initScope: ->
+  initScope: ->
     @$scope.$watch (=> @places.places), (places) => 
       @$scope.places = places
-
 
 AdminPanelController.dependencies = [
   '$scope'

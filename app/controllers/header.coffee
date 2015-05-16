@@ -3,17 +3,16 @@ class HeaderController
   #
   #
   #
-  constructor: (@$scope, @$interval) ->
+  constructor: (@$scope, @places, @$interval) ->
     @title1 = "Guido"
-    @title2 = "Munich"
-    @_initScope()
-    
+    @title2 = "Munich"    
+    @initScope()
     @
 
   #
   #
   #
-  _initScope: =>
+  initScope: =>
     @$scope.title = @title2
     @$interval =>
       if @$scope.title == @title1
@@ -21,9 +20,20 @@ class HeaderController
       else
         @$scope.title = @title1
     , 1000
+    
+    @$scope.resetPlaces = @resetPlaces
+    @
+
+  #
+  #
+  #
+  resetPlaces: =>
+    @places.setPlaces {}, true
+    @
 
 HeaderController.dependencies = [
   '$scope'
+  'places'
   '$interval'
 ]
 
