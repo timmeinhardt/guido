@@ -10,7 +10,7 @@ googlePlacesRequest=
     placeid:  ''
     key:      'AIzaSyDbW5dqnoeTjb1dETiDs-azrIPnZ9VrUSo'
 
-Place = new Schema
+placeSchema = new Schema
   category:     String
   title:        String
   description:  String
@@ -27,7 +27,7 @@ Place = new Schema
     }
   ]
 
-Place.pre 'save', (next) ->
+placeSchema.pre 'save', (next) ->
   if this.placeid
     googlePlacesRequest.qs.placeid = this.placeid
     request googlePlacesRequest, (err, resp, body) =>
@@ -40,4 +40,5 @@ Place.pre 'save', (next) ->
   else
     next()
 
-module.exports = mongoose.model 'Place', Place
+Place = mongoose.model 'Place', placeSchema
+module.exports = Place
