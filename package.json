@@ -29,11 +29,13 @@
     "errorhandler": "*",
     "socket.io": "1.3.5",
     "sass-brunch": "^1.8.1",
+    "request": "2.55",
+    "morgan":"1.5.3"
+  },
+  "devDependencies": {
     "auto-reload-brunch": "1.7.5",
     "mocha":"*",
     "should": "3.3.2",
-    "supertest": "0.15",
-    "request": "2.55",
-    "morgan":"1.5.3"
+    "supertest": "0.15"
   }
 }

@@ -16,14 +16,13 @@ mongoose.connect 'mongodb://localhost/guido'
 
 # Configuration
 app.use bodyParser.json()
-#app.use express.logger()
 app.use express.static(__dirname + '/../public')
 app.use '/uploads', express.static(__dirname + '/../uploads')
 
 env = process.env.NODE_ENV || 'development'
 if env == 'development'
   app.use errorhandler(dumpExceptions: true, showStack: true)
-  app.use morgan('dev')  
+  app.use morgan('dev')
 if env == 'production'
   app.use errorhandler()
   app.use morgan('short')
