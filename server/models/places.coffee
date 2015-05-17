@@ -11,23 +11,33 @@ googlePlacesRequest=
     key:      'AIzaSyDbW5dqnoeTjb1dETiDs-azrIPnZ9VrUSo'
 
 placeSchema = new Schema
-  category:     String
-  title:        String
-  description:  String
+  category:     
+    type: String
+    required: true
+  title:     
+    type: String
+    required: true
+  description:     
+    type: String
+    required: true
   address:      String
   homepage:     String
   phone:        String
   placeid:      String
   location:
-    latitude:        String
-    longitude:       String
+    latitude:     
+      type: String
+      required: true
+    longitude:     
+      type: String
+      required: true
   images: [
     {
       normal: String
     }
   ]
 
-placeSchema.pre 'save', (next) ->
+placeSchema.pre 'validate', (next) ->
   if this.placeid
     googlePlacesRequest.qs.placeid = this.placeid
     request googlePlacesRequest, (err, resp, body) =>
