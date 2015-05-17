@@ -33,6 +33,7 @@
     "mocha":"*",
     "should": "3.3.2",
     "supertest": "0.15",
-    "request": "2.55"
+    "request": "2.55",
+    "morgan":"1.5.3"
   }
 }
