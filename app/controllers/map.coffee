@@ -169,20 +169,26 @@ class MapController
   #
   #
   #
-  constructor: (@$scope, @places, uiGmapGoogleMapApi) ->
+  constructor: (@$scope, @places, uiGmapGoogleMapApi,uiGmapIsReady, infoWindowFactory) ->
+    uiGmapGoogleMapApi.then (mapsApi) =>
+      northeastBound = new mapsApi.LatLng(48.061550, 11.360840)
+      southwestBound = new mapsApi.LatLng(48.248199, 11.722910)
+      @allowedBounds = new mapsApi.LatLngBounds(northeastBound, southwestBound)
+
+    uiGmapIsReady.promise().then( (mapInstances) =>
+      @map =  mapInstances[0].map
+      return infoWindowFactory)
+    .then (InfoWindow) =>
+      @infoWindow = new InfoWindow(@map)
+
     @initScope()
-    uiGmapGoogleMapApi.then (maps) =>
-      @allowedBounds = new (maps.LatLngBounds)(
-        new (maps.LatLng)(48.061550, 11.360840),
-        new (maps.LatLng)(48.248199, 11.722910)
-      )
     @
 
   #
   #
   #
   initScope: ->
-    @$scope.map = 
+    @$scope.map =
       center:
         latitude:   48.1333
         longitude:  11.5667
@@ -191,9 +197,10 @@ class MapController
         panControl:         false
         mapTypeControl:     false
         streetViewControl:  false
-        minZoom: 11
+        minZoom:            11
         styles:             @mapStyles
       events:
+        # limits panning of map to allowedBounds
         center_changed: (map) =>
           if @allowedBounds.contains map.center
             @lastValidCenter = map.getCenter()
@@ -207,11 +214,16 @@ class MapController
     @        
 
   clickMarker: (marker) =>
+    place = marker.model
+    @infoWindow.setPlace place
+    @ 
 
 MapController.dependencies = [
   '$scope'
   'places'
-  'uiGmapGoogleMapApi' 
+  'uiGmapGoogleMapApi'
+  'uiGmapIsReady'
+  'infoWindowFactory' 
 ]
 
 module.exports = MapController

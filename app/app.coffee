@@ -47,8 +47,8 @@ app.directive 'header', require 'directives/header'
 app.directive 'footer', require 'directives/footer'
 app.directive 'adminPanel', require 'directives/adminPanel'
 
-
 app.service 'places', require 'services/places'
+app.factory 'infoWindowFactory', require 'services/infoWindowFactory'
 
 #
 # Setup angularJS routes
