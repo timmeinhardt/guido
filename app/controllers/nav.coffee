@@ -12,31 +12,19 @@ class NavController
   #
   initScope: ->
 
-    @$scope.categories = 
-    [
-      {
-        title: 'Food'
-      }
-      {
-        title: 'Materialism'
-      }
-      {
-        title: 'Culture'
-      }
-      {
-        title: 'Darkness'
-      }
-      {
-        title: 'Escapism'
-      }
-
+    @$scope.categories = [
+      'Food'
+      'Materialism'
+      'Culture'
+      'Darkness'
+      'Escapism'
     ]
 
     @$scope.updatePlaces = @updatePlaces
     @
 
   updatePlaces: (category) =>
-    @places.setPlaces category: category.title, true
+    @places.setPlaces category: category, true
     @
 
 NavController.dependencies = [
