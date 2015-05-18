@@ -11,7 +11,6 @@ class NavController
   #
   #
   initScope: ->
-
     @$scope.categories = [
       'Food'
       'Materialism'

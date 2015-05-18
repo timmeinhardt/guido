@@ -39,7 +39,6 @@ infoWindowFactory = (uiGmapGoogleMapApi) ->
           @div.style.left    = pixelLocation.x - @width/2 + 'px'
           @div.style.top     = pixelLocation.y - @height - @yOffset + 'px'
           @div.firstChild.innerHTML     = @place.title
-          @show()
         @
 
       hide: ->
@@ -66,7 +65,7 @@ infoWindowFactory = (uiGmapGoogleMapApi) ->
           @toggle()
         else
           @place = place
-          @draw()
+          @draw().show()
 
     return InfoWindow
 
