@@ -51,7 +51,7 @@ app.service 'places', require 'services/places'
 app.factory 'infoWindowFactory', require 'services/infoWindowFactory'
 
 #
-# Setup angularJS routes
+# Setup AngularJS routes
 #
 app.config ($routeProvider, $locationProvider) ->
   $locationProvider.html5Mode true

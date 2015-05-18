@@ -170,7 +170,7 @@ class MapController
   #
   #
   constructor: (@$scope, @places, uiGmapGoogleMapApi,uiGmapIsReady, infoWindowFactory) ->
-    uiGmapGoogleMapApi.then (mapsApi) =>
+    uiGmapGoogleMapApi.then (@mapsApi) =>
       northeastBound = new mapsApi.LatLng(48.061550, 11.360840)
       southwestBound = new mapsApi.LatLng(48.248199, 11.722910)
       @allowedBounds = new mapsApi.LatLngBounds(northeastBound, southwestBound)
@@ -215,6 +215,8 @@ class MapController
 
   clickMarker: (marker) =>
     place = marker.model
+    place.location.gmapLatLng = new @mapsApi.LatLng(place.location.latitude, place.location.longitude)
+    
     @infoWindow.setPlace place
     @ 
 
