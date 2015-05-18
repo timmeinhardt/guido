@@ -2,6 +2,10 @@ infoWindowFactory = (uiGmapGoogleMapApi) ->
   uiGmapGoogleMapApi.then (maps) ->
     class InfoWindow extends maps.OverlayView
 
+      width:  200
+      height: 200
+      yOffset: 50
+
       constructor: (map) ->
         @div    = null
         @place  = null
@@ -9,30 +13,32 @@ infoWindowFactory = (uiGmapGoogleMapApi) ->
         @
 
       onAdd: ->
-        div = document.createElement 'div'
-        div.style.visibility      = 'hidden'
+        div   = document.createElement 'div'
+        div2  = document.createElement 'div'
 
-        div.style.borderStyle     = 'none'
-        div.style.borderWidth     = '0px'
-        div.style.position        = 'absolute'
-        div.style.backgroundColor = 'red'
-        div.style.width   = '100px'
-        div.style.height  = '100px'
+        div.className = 'infoWindow'
 
-        @div = div
+        div.style.width   = @width + 'px'
+        div.style.height  = @height + 'px'
+
+        div2.style.backgroundColor = 'red'
+        div2.style.width  = '100px'
+        div2.style.height = '100px'
+
+        div.appendChild div2
 
         panes = @getPanes()
         panes.floatPane.appendChild div
+        @div = div
 
       draw: ->
         if @place 
           overlayProjection = @getProjection()
-          location = new window.google.maps.LatLng(@place.location.latitude, @place.location.longitude)
-          pixelLocation = overlayProjection.fromLatLngToDivPixel location
+          pixelLocation = overlayProjection.fromLatLngToDivPixel @place.location.gmapLatLng
 
-          @div.style.left    = pixelLocation.x + 'px'
-          @div.style.top     = pixelLocation.y + 'px'
-          @div.innerHTML     = @place.title
+          @div.style.left    = pixelLocation.x - @width/2 + 'px'
+          @div.style.top     = pixelLocation.y - @height - @yOffset + 'px'
+          @div.firstChild.innerHTML     = @place.title
           @show()
         @
 
@@ -44,13 +50,20 @@ infoWindowFactory = (uiGmapGoogleMapApi) ->
         if @div
           @div.style.visibility = 'visible'
 
+      toggle: ->
+        if @div
+          if @div.style.visibility == 'hidden'
+            @show()
+          else
+            @hide()
+
       onRemove: ->
         @div.parentNode.removeChild @div
         @div = null
 
       setPlace: (place) ->
         if @place and place._id is @place._id
-          @hide()
+          @toggle()
         else
           @place = place
           @draw()
