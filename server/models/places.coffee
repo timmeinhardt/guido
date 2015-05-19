@@ -23,7 +23,7 @@ placeSchema = new Schema
   address:      String
   homepage:     String
   phone:        String
-  placeid:      String
+  gPlaceId:      String
   location:
     latitude:     
       type: String
@@ -38,8 +38,8 @@ placeSchema = new Schema
   ]
 
 placeSchema.pre 'validate', (next) ->
-  if this.placeid
-    googlePlacesRequest.qs.placeid = this.placeid
+  if this.gPlaceId
+    googlePlacesRequest.qs.placeid = this.gPlaceId
     request googlePlacesRequest, (err, resp, body) =>
       bodyJSON = JSON.parse body
       location = bodyJSON.result.geometry.location

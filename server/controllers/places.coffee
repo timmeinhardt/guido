@@ -41,7 +41,7 @@ Place.remove {}, ->
     category: "Darkness"
     title: "Kong"
     description: "Club am HBF"
-    placeid: "ChIJS3Wt_Pl1nkcR8341u4oQ_Jk"
+    gPlaceId: "ChIJS3Wt_Pl1nkcR8341u4oQ_Jk"
     images: [
       {
         normal: '/uploads/images/places/kong.jpg'
@@ -51,7 +51,7 @@ Place.remove {}, ->
     category: "Food"
     title: "Kismet"
     description: "Orient und O..."
-    placeid: "ChIJW8lJY_R1nkcRPhiet7xj6aw"
+    gPlaceId: "ChIJW8lJY_R1nkcRPhiet7xj6aw"
     images: [
       {
         normal: '/uploads/images/places/kismet.jpg'
@@ -61,7 +61,7 @@ Place.remove {}, ->
     category: "Materialism"
     title: "Harvest"
     description: "Moon"
-    placeid: "ChIJL6QKbel1nkcRn0jc3YNinr0"
+    gPlaceId: "ChIJL6QKbel1nkcRn0jc3YNinr0"
     images: [
       {
         normal: '/uploads/images/places/harvest.jpg'
@@ -71,7 +71,7 @@ Place.remove {}, ->
     category: "Darkness"
     title: "Harry Klein"
     description: "Techno Techno Techno"
-    placeid: "ChIJP_jir_d1nkcR-PLGT1VWAuE"
+    gPlaceId: "ChIJP_jir_d1nkcR-PLGT1VWAuE"
     images: [
       {
         normal: '/uploads/images/places/harry_klein.jpg'
@@ -81,7 +81,7 @@ Place.remove {}, ->
     category: "Food"
     title: "Schnelle Liebe"
     description: "Burger Burger Burger"
-    placeid: "ChIJlxEQyl7fnUcRF5mlsNNlnTk"
+    gPlaceId: "ChIJlxEQyl7fnUcRF5mlsNNlnTk"
     images: [
       {
         normal: '/uploads/images/places/schnelle_liebe.jpg'
@@ -91,7 +91,7 @@ Place.remove {}, ->
     category: "Escapism"
     title: "Flaucher"
     description: "Moon"
-    placeid: "ChIJq2ptKj3fnUcRQDaV-KQlHQ8"
+    gPlaceId: "ChIJq2ptKj3fnUcRQDaV-KQlHQ8"
     images: [
       {
         normal: '/uploads/images/places/flaucher.jpg'

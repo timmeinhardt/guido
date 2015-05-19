@@ -169,7 +169,7 @@ class MapController
   #
   #
   #
-  constructor: (@$scope, @places, uiGmapGoogleMapApi,uiGmapIsReady, infoWindowFactory) ->
+  constructor: (@$scope, @PlacesService, uiGmapGoogleMapApi, uiGmapIsReady, infoWindowFactory) ->
     uiGmapGoogleMapApi.then (@mapsApi) =>
       northeastBound = new mapsApi.LatLng(48.061550, 11.360840)
       southwestBound = new mapsApi.LatLng(48.248199, 11.722910)
@@ -206,8 +206,8 @@ class MapController
             @lastValidCenter = map.getCenter()
           map.panTo @lastValidCenter
 
-
-    @$scope.$watch (=> @places.mapPlaces), (places) =>
+    @$scope.$watch (=> @PlacesService.places), (places) =>
+      console.log places
       angular.forEach places, (place) =>
         place.click = @clickMarker
       @$scope.markers = places
@@ -222,7 +222,7 @@ class MapController
 
 MapController.dependencies = [
   '$scope'
-  'places'
+  'PlacesService'
   'uiGmapGoogleMapApi'
   'uiGmapIsReady'
   'infoWindowFactory' 

@@ -2,15 +2,16 @@ class PlacesService
 
   constructor: (@$resource) ->
     @resource = @$resource '/places/:_id'
-    @setPlaces {}, true
+    @setPlaces {}
     @
 
   #
   #
   #
-  setPlaces: (query, setMapPlaces) =>
-    @places = @resource.query query
-    @mapPlaces = @places
+  setPlaces: (query) =>
+    places = @resource.query query, =>
+      @places = places
+
 
 PlacesService.dependencies = [
   '$resource'

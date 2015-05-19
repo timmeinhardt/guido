@@ -3,7 +3,7 @@ class HeaderController
   #
   #
   #
-  constructor: (@$scope, @places, @$interval) -> 
+  constructor: (@$scope, @PlacesService, @$interval) -> 
     @initScope()
     @
 
@@ -22,12 +22,12 @@ class HeaderController
   #
   #
   resetPlaces: =>
-    @places.setPlaces {}, true
+    @PlacesService.setPlaces {}
     @
 
 HeaderController.dependencies = [
   '$scope'
-  'places'
+  'PlacesService'
   '$interval'
 ]
 

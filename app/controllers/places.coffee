@@ -3,7 +3,7 @@ class PlacesController
   #
   #
   #
-  constructor: (@$scope, @places) ->
+  constructor: (@$scope, @PlacesService) ->
     @initScope()
     @
 
@@ -11,13 +11,13 @@ class PlacesController
   #
   #
   initScope: ->
-    @$scope.$watch (=> @places.places), (places) => 
+    @$scope.$watch (=> @PlacesService.places), (places) =>
       @$scope.places = places
     @
 
 PlacesController.dependencies = [
   '$scope'
-  'places'
+  'PlacesService'
 ]
 
 
