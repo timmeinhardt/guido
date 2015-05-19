@@ -11,6 +11,7 @@ class FooterController
   #
   #
   initScope: ->
+    @
 
 FooterController.dependencies = ['$scope']
 

@@ -4,7 +4,6 @@ class HomeController
   #
   #
   constructor: (@$scope) ->
-    @title = "Guido"
     @initScope()
     @
 
@@ -12,7 +11,6 @@ class HomeController
   #
   #
   initScope: ->
-    @$scope.title       = @title
     @
 
 HomeController.dependencies = ['$scope']
