@@ -8,6 +8,7 @@ io = require('socket.io')
 require 'angular'
 require 'angular-route'
 require 'angular-google-maps'
+require 'angular-resource'
 
 #
 # Initialize angularJS app module
@@ -15,6 +16,7 @@ require 'angular-google-maps'
 app = angular.module 'App', [
   'ngRoute'
   'uiGmapgoogle-maps'
+  'ngResource'
 ]
 
 #

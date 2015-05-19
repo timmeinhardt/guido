@@ -4,8 +4,8 @@ class HeaderController
   #
   #
   constructor: (@$scope, @places, @$interval) ->
-    @title1 = "Guido"
-    @title2 = "Munich"    
+    @title1 = "Munich"
+    @title2 = "Guido"    
     @initScope()
     @
 
@@ -19,7 +19,7 @@ class HeaderController
         @$scope.title = @title2
       else
         @$scope.title = @title1
-    , 1000
+    , 1500
     
     @$scope.resetPlaces = @resetPlaces
     @

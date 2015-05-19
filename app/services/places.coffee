@@ -1,33 +1,19 @@
 class PlacesService
 
-  constructor: (@$http, @$filter) ->
+  constructor: (@$resource) ->
+    @resource = @$resource '/places/:_id'
     @setPlaces {}, true
     @
-
-  #
-  # 
-  #
-  setPlace: (_id) =>
-    loadedPlace = @$filter('filter')(@places, {_id: _id})
-    if loadedPlace.length > 0
-      @places = loadedPlace
-    else 
-      @setPlaces _id: _id, false
 
   #
   #
   #
   setPlaces: (query, setMapPlaces) =>
-    request = @$http.get '/places', params: query
-    request.then (response) =>
-      @places = response.data
-      if setMapPlaces is true
-        @mapPlaces = @places
-    @
+    @places = @resource.query query
+    @mapPlaces = @places
 
 PlacesService.dependencies = [
-  '$http'
-  '$filter'
+  '$resource'
 ]
 
 module.exports = PlacesService
