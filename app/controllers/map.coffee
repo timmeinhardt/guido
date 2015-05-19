@@ -207,7 +207,6 @@ class MapController
           map.panTo @lastValidCenter
 
     @$scope.$watch (=> @PlacesService.places), (places) =>
-      console.log places
       angular.forEach places, (place) =>
         place.click = @clickMarker
       @$scope.markers = places

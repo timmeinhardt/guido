@@ -4,7 +4,8 @@ class AdminPanelController
   #
   #
   constructor: (@$scope, @PlacesService) ->
-    @initScope()  
+    @initScope()
+    @PlacesService.setPlaces()
     @
 
   #
@@ -21,14 +22,16 @@ class AdminPanelController
     if !@$scope.newPlace or @$scope.newPlace.length < 1
         return
     place = new @PlacesService.resource(@$scope.newPlace)
+    # TODO: correct error handling
     place.$save =>
       if place._id
         @$scope.places.push place
         @$scope.newPlace = {}
 
   removePlace: (place) =>
-    @PlacesService.resource.remove _id: place._id, (place) =>
-      #@$scope.places.splice index, 1
+    remove = @PlacesService.resource.remove _id: place._id
+    remove.$promise.then (place) =>
+      @PlacesService.dropPlace place
 
 AdminPanelController.dependencies = [
   '$scope'

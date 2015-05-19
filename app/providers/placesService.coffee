@@ -3,15 +3,21 @@ class PlacesService
   constructor: ($resource) ->
     @resource = $resource '/places/:_id'
     @places = []
-    @
 
   #
   #
   #
-  setPlaces: (query) =>
+  setPlaces: (query = {}, select = '') =>
     places = @resource.query query, =>
       @places = places
 
+  #
+  #
+  #
+  dropPlace: (place) =>
+    angular.forEach @places, (p, i) =>
+      if p._id is place._id
+        @places.splice(i, 1);
 
 PlacesService.dependencies = [
   '$resource'
