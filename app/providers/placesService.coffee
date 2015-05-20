@@ -3,6 +3,7 @@ class PlacesService
   constructor: ($resource) ->
     @resource = $resource '/places/:_id'
     @places = []
+    @
 
   #
   #
