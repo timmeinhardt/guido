@@ -1,7 +1,7 @@
 class PlacesService
 
   constructor: ($resource) ->
-    @resource = $resource '/places/:_id'
+    @resource = $resource '/places/:_id', null, 'update': method: 'PUT'
     @places = []
     @
 
