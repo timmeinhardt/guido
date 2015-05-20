@@ -22,7 +22,7 @@ class HeaderController
   #
   #
   resetPlaces: =>
-    @PlacesService.setPlaces {}
+    @PlacesService.setPlaces()
     @
 
 HeaderController.dependencies = [

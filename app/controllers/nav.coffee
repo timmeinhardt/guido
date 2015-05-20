@@ -3,7 +3,7 @@ class NavController
   #
   #
   #
-  constructor: (@$scope, @PlacesService) ->  
+  constructor: (@$scope, @PlacesService, @InfoWindow) ->  
     @initScope()
     @
 
@@ -19,16 +19,18 @@ class NavController
       'Escapism'
     ]
 
-    @$scope.updatePlaces = @updatePlaces
+    @$scope.showPlaces = @showPlaces
     @
 
-  updatePlaces: (category) =>
+  showPlaces: (category) =>
     @PlacesService.setPlaces category: category
+    @InfoWindow.hide()
     @
 
 NavController.dependencies = [
   '$scope'
   'PlacesService'
+  'InfoWindow'
 ]
 
 module.exports = NavController

@@ -3,19 +3,19 @@
     | Admin 
   form.simple-form(novalidate='')
     label(for='title') Title:
-    input#title(type='text',        name='title',       ng-model='newPlace.title')
+    input#title(type='text',        name='title',       ng-model='formPlace.title')
     label(for='category') Category:
-    input#category(type='text',     name='category',    ng-model='newPlace.category') 
+    input#category(type='text',     name='category',    ng-model='formPlace.category') 
     label(for='desciption') Description:
-    input#description(type='text',  name='description', ng-model='newPlace.description') 
+    input#description(type='text',  name='description', ng-model='formPlace.description') 
     label(for='address') Address:
-    input#address(type='text',      name='address',     ng-model='newPlace.address') 
+    input#address(type='text',      name='address',     ng-model='formPlace.address') 
     label(for='homepage') Homepage:
-    input#homepage(type='text',     name='homepage',    ng-model='newPlace.homepage') 
+    input#homepage(type='text',     name='homepage',    ng-model='formPlace.homepage') 
     label(for='phone') Phone:
-    input#description(type='text',  name='phone',       ng-model='newPlace.phone') 
+    input#description(type='text',  name='phone',       ng-model='formPlace.phone') 
     label(for='gPlaceId') Place Id:
-    input#placeId(type='text',      name='gPlaceId',     ng-model='newPlace.gPlaceId')
+    input#placeId(type='text',      name='gPlaceId',    ng-model='formPlace.gPlaceId')
 
     input(type='submit', ng-click='savePlace()', value='Save')
   table
@@ -26,5 +26,4 @@
           | {{place.title}}
         td
           button.button-edit(ng-click='editPlace(place)') edit
-        td
           button.button-remove(ng-click='removePlace(place)') remove

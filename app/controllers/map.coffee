@@ -169,17 +169,15 @@ class MapController
   #
   #
   #
-  constructor: (@$scope, @PlacesService, uiGmapGoogleMapApi, uiGmapIsReady, infoWindowFactory) ->
-    uiGmapGoogleMapApi.then (@mapsApi) =>
+  constructor: (@$scope, @PlacesService, uiGmapGoogleMapApi, uiGmapIsReady, @InfoWindow) ->
+    uiGmapGoogleMapApi.then (mapsApi) =>
       northeastBound = new mapsApi.LatLng(48.061550, 11.360840)
       southwestBound = new mapsApi.LatLng(48.248199, 11.722910)
       @allowedBounds = new mapsApi.LatLngBounds(northeastBound, southwestBound)
 
-    uiGmapIsReady.promise().then( (mapInstances) =>
-      @map =  mapInstances[0].map
-      return infoWindowFactory)
-    .then (InfoWindow) =>
-      @infoWindow = new InfoWindow(@map)
+    uiGmapIsReady.promise().then (mapInstances) =>
+      map =  mapInstances[0].map
+      @InfoWindow.setMap map
 
     @initScope()
     @
@@ -207,17 +205,14 @@ class MapController
           map.panTo @lastValidCenter
 
     @$scope.$watch (=> @PlacesService.places), (places) =>
-      console.log places
       angular.forEach places, (place) =>
         place.click = @clickMarker
       @$scope.markers = places
     @        
 
   clickMarker: (marker) =>
-    place = marker.model
-    place.location.gmapLatLng = new @mapsApi.LatLng(place.location.latitude, place.location.longitude)
-
-    @infoWindow.setPlace place
+    place = marker.model    
+    @InfoWindow.setPlace place
     @ 
 
 MapController.dependencies = [
@@ -225,7 +220,7 @@ MapController.dependencies = [
   'PlacesService'
   'uiGmapGoogleMapApi'
   'uiGmapIsReady'
-  'infoWindowFactory' 
+  'InfoWindow' 
 ]
 
 module.exports = MapController

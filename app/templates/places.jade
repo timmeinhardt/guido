@@ -1,7 +1,7 @@
 .places-card-wrap
-  .places-card(ng-repeat="place in places")
-    .places-card-title(ng-click="setPlace(place)")
+  .places-card(ng-repeat="place in places" ng-click="showInfoWindow(place)")
+    .places-card-title
       | {{place.title}}
   .places-card(ng-if="!places.length")
     .places-card-title
-      | Sorry, nowhere to go.
+      | Are you hungry?
