@@ -8,8 +8,8 @@ class Module
 
 class InfoWindow extends Module
 
-  width:  200
-  height: 200
+  width:  280
+  height: 320
   yOffset: 50
 
   constructor: (uiGmapGoogleMapApi) ->
@@ -21,18 +21,21 @@ class InfoWindow extends Module
 
   onAdd: ->
     div   = document.createElement 'div'
-    div2  = document.createElement 'div'
+    h2    = document.createElement 'h2'
+    img   = document.createElement 'img'
+    p     = document.createElement 'p'
 
     div.className = 'infoWindow'
+    h2.className  = 'infoWindowTitle'
+    img.className = 'infoWindowImg'
+    p.className   = 'infoWindowDescription'
 
     div.style.width   = @width + 'px'
     div.style.height  = @height + 'px'
 
-    div2.style.backgroundColor = 'red'
-    div2.style.width  = '100px'
-    div2.style.height = '100px'
-
-    div.appendChild div2
+    div.appendChild h2
+    div.appendChild img
+    div.appendChild p
 
     panes = @getPanes()
     panes.floatPane.appendChild div
@@ -46,6 +49,8 @@ class InfoWindow extends Module
       @div.style.left    = pixelLocation.x - @width/2 + 'px'
       @div.style.top     = pixelLocation.y - @height - @yOffset + 'px'
       @div.firstChild.innerHTML     = @place.title
+      @div.childNodes[1].src        = @place.images[0].normal
+      @div.childNodes[2].innerHTML  = @place.description
     @
 
   hide: ->
