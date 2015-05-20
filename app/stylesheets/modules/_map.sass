@@ -8,5 +8,35 @@
 .infoWindow
   visibility:       hidden
   position:         absolute
-  background-color: blue
+  background-color: white
+  border:           2px solid black 
   
+.infoWindowTitle
+  font-size:   1.5rem 
+  font-weight: 500
+  margin:      20px 20px
+
+.infoWindowImg
+  margin:     20px 15px
+  width:      240px
+  height:     auto
+  filter:         grayscale(1)
+  -webkit-filter: grayscale(1)
+  -moz-filter:    grayscale(1)
+  -o-filter:      grayscale(1)
+  -ms-filter:     grayscale(1)
+  transition:         filter 1s ease-in-out
+  -webkit-transition: -webkit-filter 1s ease-in-out
+  -moz-transition:    -moz-filter 1s ease-in-out
+  -o-transition:      -o-filter 1s ease-in-out
+  -ms-transition:     -ms-filter 1s ease-in-out
+
+  &:hover
+    filter:         grayscale(0)
+    -webkit-filter: grayscale(0)
+    -moz-filter:    grayscale(0)
+    -o-filter:      grayscale(0)
+    -ms-filter:     grayscale(0)
+
+.infoWindowDescription
+  margin: 20px 20px

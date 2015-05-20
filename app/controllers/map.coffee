@@ -216,7 +216,7 @@ class MapController
   clickMarker: (marker) =>
     place = marker.model
     place.location.gmapLatLng = new @mapsApi.LatLng(place.location.latitude, place.location.longitude)
-    
+
     @infoWindow.setPlace place
     @ 
 

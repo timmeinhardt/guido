@@ -1,8 +1,8 @@
 class PlacesService
 
-  constructor: (@$resource) ->
-    @resource = @$resource '/places/:_id'
-    @setPlaces {}
+  constructor: ($resource) ->
+    @resource = $resource '/places/:_id'
+    @places = []
     @
 
   #
