@@ -1,8 +1,8 @@
 'use strict'
 
-mongoose  = require 'mongoose'
-request   = require 'request'
-Schema    = mongoose.Schema
+mongoose    = require 'mongoose'
+request     = require 'request'
+categories  = require './categories'
 
 googlePlacesRequest=
   url: 'https://maps.googleapis.com/maps/api/place/details/json'
@@ -10,10 +10,11 @@ googlePlacesRequest=
     placeid:  ''
     key:      'AIzaSyDbW5dqnoeTjb1dETiDs-azrIPnZ9VrUSo'
 
-placeSchema = new Schema
+placeSchema = new mongoose.Schema
   category:     
     type: String
     required: true
+    enum: categories
   title:     
     type: String
     required: true
@@ -23,7 +24,7 @@ placeSchema = new Schema
   address:      String
   homepage:     String
   phone:        String
-  gPlaceId:      String
+  gPlaceId:     String
   location:
     latitude:     
       type: String
@@ -34,6 +35,7 @@ placeSchema = new Schema
   images: [
     {
       normal: String
+      thumb:  String
     }
   ]
 
@@ -41,14 +43,18 @@ placeSchema.pre 'validate', (next) ->
   if this.gPlaceId
     googlePlacesRequest.qs.placeid = this.gPlaceId
     request googlePlacesRequest, (err, resp, body) =>
-      bodyJSON = JSON.parse body
-      location = bodyJSON.result.geometry.location
-      
-      this.location.latitude  = location.lat
-      this.location.longitude = location.lng
-      next()
+      if err
+        next()
+      else
+        bodyJSON = JSON.parse body
+        location = bodyJSON.result.geometry.location
+        
+        this.location.latitude  = location.lat
+        this.location.longitude = location.lng
+        next()
   else
     next()
 
 Place = mongoose.model 'Place', placeSchema
+
 module.exports = Place

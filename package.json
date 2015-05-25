@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/legobuzz/guido"
+    "url": "https://github.com/timmeinhardt/guido"
   },
   "scripts": {
     "start": "brunch watch --server",

@@ -1,7 +1,10 @@
+categories = require 'server/models/categories'
+
 class PlacesService
 
   constructor: ($resource) ->
     @resource = $resource '/places/:_id', null, 'update': method: 'PUT'
+    @categories = categories
     @places = []
     @
 
