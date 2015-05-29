@@ -4,14 +4,22 @@ class AdminPanelController
   #
   #
   constructor: (@$scope, @PlacesService) ->
-    @initScope()
     @PlacesService.setPlaces()
+    @initScope()
     @
 
   #
   #
   #
   initScope: ->
+    @$scope.categories = [
+      'Food'
+      'Materialism'
+      'Culture'
+      'Darkness'
+      'Escapism'
+    ]
+      
     @$scope.$watch (=> @PlacesService.places), (places) => 
       @$scope.places = places
       
@@ -44,6 +52,7 @@ class AdminPanelController
 AdminPanelController.dependencies = [
   '$scope'
   'PlacesService'
+  'NavController'
 ]
 
 module.exports = AdminPanelController

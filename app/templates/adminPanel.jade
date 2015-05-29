@@ -1,25 +1,24 @@
 .admin-wrap
-  h1
+  h1.admin-title
     | Admin 
-  form.simple-form(novalidate='')
+  form(novalidate='', enctype='multipart/form-data')
     label(for='title') Title:
-    input#title(type='text',        name='title',       ng-model='formPlace.title')
+    input(type='text',                      name='title',       ng-model='formPlace.title')
     label(for='category') Category:
-    input#category(type='text',     name='category',    ng-model='formPlace.category') 
+    select(name='category', ng-model='formPlace.category', ng-options='category as category for category in categories' )
     label(for='desciption') Description:
-    input#description(type='text',  name='description', ng-model='formPlace.description') 
+    textarea.input-description(type='text', name='description', rows='3', ng-model='formPlace.description') 
     label(for='address') Address:
-    input#address(type='text',      name='address',     ng-model='formPlace.address') 
+    input(type='text',                      name='address',     ng-model='formPlace.address') 
     label(for='homepage') Homepage:
-    input#homepage(type='text',     name='homepage',    ng-model='formPlace.homepage') 
+    input(type='text',                      name='homepage',    ng-model='formPlace.homepage') 
     label(for='phone') Phone:
-    input#description(type='text',  name='phone',       ng-model='formPlace.phone') 
+    input(type='text',                      name='phone',       ng-model='formPlace.phone') 
     label(for='gPlaceId') Place Id:
-    input#placeId(type='text',      name='gPlaceId',    ng-model='formPlace.gPlaceId')
-
-    input(type='submit', ng-click='savePlace()', value='Save')
+    input(type='text',                      name='gPlaceId',     ng-model='formPlace.gPlaceId')
+    input(type='file')
+    input.button-save(type='submit', ng-click='savePlace()', value='Save')
   table
-    thead Places
     tbody
       tr(ng-repeat="place in places")
         td

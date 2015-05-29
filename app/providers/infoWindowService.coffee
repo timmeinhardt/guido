@@ -8,7 +8,7 @@ class Module
 
 class InfoWindow extends Module
 
-  width:  280
+  width:  260
   height: 320
   yOffset: 50
 
@@ -24,11 +24,13 @@ class InfoWindow extends Module
     h2    = document.createElement 'h2'
     img   = document.createElement 'img'
     p     = document.createElement 'p'
+    a     = document.createElement 'a'
 
     div.className = 'infoWindow'
     h2.className  = 'infoWindowTitle'
     img.className = 'infoWindowImg'
     p.className   = 'infoWindowDescription'
+    a.className   = 'infoWindowHomepage'
 
     div.style.width   = @width + 'px'
     div.style.height  = @height + 'px'
@@ -36,6 +38,7 @@ class InfoWindow extends Module
     div.appendChild h2
     div.appendChild img
     div.appendChild p
+    div.appendChild a
 
     panes = @getPanes()
     panes.floatPane.appendChild div
@@ -48,9 +51,10 @@ class InfoWindow extends Module
 
       @div.style.left    = pixelLocation.x - @width/2 + 'px'
       @div.style.top     = pixelLocation.y - @height - @yOffset + 'px'
-      @div.firstChild.innerHTML     = @place.title
-      @div.childNodes[1].src        = @place.images[0].normal
-      @div.childNodes[2].innerHTML  = @place.description
+      @div.firstChild.innerHTML       = @place.title
+      @div.childNodes[1].src          = @place.images[0].normal
+      @div.childNodes[2].innerHTML    = @place.description
+      @div.childNodes[3].setAttribute 'href', '@place.homepage'
     @
 
   hide: ->
