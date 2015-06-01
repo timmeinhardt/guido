@@ -1,4 +1,4 @@
-backend = ($window) ->
+backend = ->
 
   restrict: 'E'
 
