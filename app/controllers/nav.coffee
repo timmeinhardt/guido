@@ -11,14 +11,7 @@ class NavController
   #
   #
   initScope: ->
-    @$scope.categories = [
-      'Food'
-      'Materialism'
-      'Culture'
-      'Darkness'
-      'Escapism'
-    ]
-
+    @$scope.categories = @PlacesService.categories
     @$scope.showPlaces = @showPlaces
     @
 

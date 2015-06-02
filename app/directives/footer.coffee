@@ -1,4 +1,4 @@
-footer = ($window) ->
+footer = ->
 
   restrict: 'E'
 

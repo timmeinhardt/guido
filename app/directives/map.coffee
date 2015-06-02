@@ -1,4 +1,4 @@
-map = ($window) ->
+map = ->
 
   restrict: 'E'
 

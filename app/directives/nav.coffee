@@ -1,4 +1,4 @@
-nav = ($window) ->
+nav = ->
 
   restrict: 'E'
 

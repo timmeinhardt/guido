@@ -14,12 +14,13 @@ exports.config =
     public: 'public'
     watched: [
       'app'
+      'server/models'
     ]
 
   files:
     javascripts:
       joinTo:
-        'js/app.js':    /^app/
+        'js/app.js':    /^(app|server)/
         'js/vendor.js': /^(bower_components|vendor)/
 
     stylesheets:

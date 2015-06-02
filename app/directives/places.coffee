@@ -1,4 +1,4 @@
-places = ($window) ->
+places = ->
 
   restrict: 'E'
 

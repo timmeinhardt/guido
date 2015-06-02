@@ -1,4 +1,4 @@
-header = ($window) ->
+header = ->
 
   restrict: 'E'
 

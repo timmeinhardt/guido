@@ -83,7 +83,7 @@ class InfoWindow extends Module
       place.location.gmapLatLng = new @mapsApi.LatLng(place.location.latitude, place.location.longitude)
       @place = place
       @map.setCenter @place.location.gmapLatLng
-      @draw().show()
+      @map.panBy 0, -150
 
 InfoWindow.dependencies = [
   'uiGmapGoogleMapApi'
