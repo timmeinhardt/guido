@@ -2,7 +2,7 @@ nav = ->
 
   restrict: 'E'
 
-  controller: 'NavController'
+  controller: require('controllers/nav')
 
   template: require('templates/nav')()
 

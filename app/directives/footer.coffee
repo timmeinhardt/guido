@@ -2,7 +2,7 @@ footer = ->
 
   restrict: 'E'
 
-  controller: 'FooterController'
+  controller: require('controllers/footer')
 
   template: require('templates/footer')()
 

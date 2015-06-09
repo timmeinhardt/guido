@@ -32,11 +32,6 @@ app.config (uiGmapGoogleMapApiProvider) ->
 # Register angular components
 #
 app.controller 'HomeController',  require 'controllers/home'
-app.controller 'PlacesController',  require 'controllers/places'
-app.controller 'MapController',   require 'controllers/map'
-app.controller 'NavController',   require 'controllers/nav'
-app.controller 'HeaderController', require 'controllers/header'
-app.controller 'FooterController', require 'controllers/footer'
 app.controller 'AdminPanelController',  require 'controllers/adminPanel'
 
 
@@ -45,7 +40,6 @@ app.directive 'places', require 'directives/places'
 app.directive 'nav', require 'directives/nav'
 app.directive 'header', require 'directives/header'
 app.directive 'footer', require 'directives/footer'
-app.directive 'adminPanel', require 'directives/adminPanel'
 
 app.service 'PlacesService', require 'providers/placesService'
 app.service 'InfoWindow', require 'providers/infoWindowService'

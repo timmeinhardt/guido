@@ -2,7 +2,7 @@ places = ->
 
   restrict: 'E'
 
-  controller: 'PlacesController'
+  controller: require('controllers/places')
 
   template: require('templates/places')()
 

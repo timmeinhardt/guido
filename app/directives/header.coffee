@@ -2,7 +2,7 @@ header = ->
 
   restrict: 'E'
 
-  controller: 'HeaderController'
+  controller: require('controllers/header')
 
   template: require('templates/header')()
 
